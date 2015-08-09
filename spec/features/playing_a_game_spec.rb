@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'computer'
 
 feature 'Playing a game' do
   before(:each) do
@@ -8,6 +7,10 @@ feature 'Playing a game' do
   scenario 'Player can choose an option' do
     visit '/game?myname=Antonio'
     expect(page).to have_content 'Now select an option!'
+  end
+  scenario 'player can choose to play against cpu' do
+    visit '/'
+    expect(page).to have_button 'New Game'
   end
   scenario 'Player chooses an option' do
     visit '/game?myname=Antonio'
