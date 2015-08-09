@@ -5,4 +5,8 @@ feature 'playing a 2 players game' do
     visit '/'
     expect(page).to have_button 'New Multiplayer Game'
   end
+  scenario 'player is taken to the multiplayer game' do
+    visit '/multi'
+    expect(page).to have_selector('option')
+  end
 end

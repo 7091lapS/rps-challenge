@@ -12,6 +12,10 @@ feature 'Playing a game' do
     visit '/'
     expect(page).to have_button 'New Game'
   end
+  scenario 'player is taken to the game' do
+    visit '/game?myname=Antonio'
+    expect(page).to have_selector('option')
+  end
   scenario 'Player chooses an option' do
     visit '/game?myname=Antonio'
     select 'Rock', from: 'option'

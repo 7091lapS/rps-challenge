@@ -22,10 +22,16 @@ class RockPaperScissors < Sinatra::Base
     @my_move = params[:option]
     @computer_move = Computer.new.move
     @result = Game.new.result(@my_move, @computer_move)
-    session[:option] = @my_move
+    #session[:option] = @my_move
     p params
     erb :game
   end
+
+  get '/multi' do
+
+
+  end
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 
