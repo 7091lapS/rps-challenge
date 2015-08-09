@@ -11,14 +11,13 @@ class RockPaperScissors < Sinatra::Base
   end
 
   get '/game' do
-    @visitor = params[:myname]
+    @visitor = params[:playername]
     redirect to('/') unless (@visitor != "" || @visitor == nil) # is this acceptable, or should it be in the erb?
-    session[:myname] = @visitor
     erb :game
   end
 
   post '/game' do
-    @visitor = params[:myname]
+    @visitor = params[:playername]
     @my_move = params[:option]
     @computer_move = Computer.new.move
     @result = Game.new.result(@my_move, @computer_move)
@@ -26,11 +25,20 @@ class RockPaperScissors < Sinatra::Base
     p params
     erb :game
   end
-
   get '/multi' do
-
-
+    if @player1
+      @player2 = params[:playername]
+      session[:player2] = @player2
+      puts "you're player 2"
+    else
+      @player1 = params[:playername]
+      session[:player1] = @player1
+      puts "you're player 1"
+    end
+    p session
+    erb :multi
   end
+
 
   # start the server if ruby file executed directly
   run! if app_file == $0
