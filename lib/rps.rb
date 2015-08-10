@@ -26,13 +26,14 @@ class RockPaperScissors < Sinatra::Base
     erb :game
   end
   get '/multi' do
-    if @player1
-      @player2 = params[:playername]
-      session[:player2] = @player2
+    if $player1
+      $player2 = params[:playername]
+      session[:player2] = $player2
+      session[:player1] = $player1
       puts "you're player 2"
     else
-      @player1 = params[:playername]
-      session[:player1] = @player1
+      $player1 = params[:playername]
+      session[:player1] = $player1
       puts "you're player 1"
     end
     p session
