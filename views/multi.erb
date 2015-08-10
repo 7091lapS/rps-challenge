@@ -7,3 +7,19 @@
   </select>
   <input value="Throw!" type="submit">
 </form>
+
+<% if params[:option] != nil %>
+  You threw <%= params[:option] %>!
+  Your opponent threw <%= %>!
+<% end %>
+
+<% case %>
+<% when @result == 'player 1' %>
+  player 1 wins!
+<% when @result == 'draw' %>
+  Draw!
+<% when @result == 'player 2' %>
+  player 2 wins!
+<% end %>
+
+#need to make a player  know who he is?

@@ -25,6 +25,7 @@ class RockPaperScissors < Sinatra::Base
     p params
     erb :game
   end
+
   get '/multi' do
     if $player1
       $player2 = params[:playername]
@@ -38,6 +39,14 @@ class RockPaperScissors < Sinatra::Base
     end
     p session
     erb :multi
+  end
+
+  post '/multi' do
+    $player_1_move = params[:option]
+    session[:player_1_move] = $player_1_move  #need to make sure I understand this, might not be correct
+    $player_2_move = params[:option]
+    session[:player_2_move] = $player_2_move
+    $result = Game.new.result($player_1_move, $player_2_move)
   end
 
 
